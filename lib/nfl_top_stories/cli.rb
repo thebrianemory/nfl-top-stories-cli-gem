@@ -17,12 +17,12 @@ class CLI
   end
 
   def menu
-    puts "Enter the number for the site you want to see headlines from.\n You can also type list to display sites or exit to cancel."
+    puts "Enter the number for the site you want to see headlines from.\nYou can also type list to display sites or exit to cancel."
     input = gets.strip.downcase
     if input == "1"
       Headline.espn_headlines
     elsif input == "2"
-      Story.nfl_stories
+      Headline.nfl_headlines
     elsif input == "3"
       puts "Lists stories from CBS Sports"
     elsif input == "4"
