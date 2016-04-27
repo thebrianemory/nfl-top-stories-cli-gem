@@ -10,10 +10,10 @@ class Headline
       puts "#{i}. #{story.headline}"
       @all_stories << story
     end
-    self.user_choice
+    self.espn_choice
   end
 
-  def self.user_choice
+  def self.espn_choice
     input = gets.strip.downcase
     puts ""
     if input == "0"
@@ -32,6 +32,8 @@ class Headline
         #{@all_stories[2].body}
       DOC
       self.espn_headlines
+    elsif input == "exit"
+      CLI.new.goodbye
     else
       puts "\033[1;33mInvalid Entry -- Please try again\033[0m"
       self.espn_headlines
