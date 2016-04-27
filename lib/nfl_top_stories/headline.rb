@@ -36,7 +36,6 @@ class Headline
       i += 1
     end
   end
-  # binding.pry
 
   def self.espn_choice
     puts ""
@@ -52,32 +51,4 @@ class Headline
       Story.espn_stories(@headlines[0].url)
     end
   end
-
-
-  # def self.espn_choice
-  #   input = gets.strip.downcase
-  #   puts ""
-  #   if input == "0"
-  #     CLI.new.call
-  #   elsif input == "1"
-  #     puts <<~DOC
-  #       \033[1;35m#{@espn_headline_scrape[1].title}\033[0m
-  #       \033[0;31mPosted by #{@espn_headline_scrape[1].author} on #{@espn_headline_scrape[1].posted}\033[0m
-  #       #{@espn_headline_scrape[1].body}
-  #     DOC
-  #     self.espn_headlines
-  #   elsif input == "2"
-  #     puts <<~DOC
-  #       \033[1;35m#{@espn_headline_scrape[2].title}\033[0m
-  #       \033[0;31mPosted by #{@espn_headline_scrape[2].author} on #{@espn_headline_scrape[2].posted}\033[0m
-  #       #{@espn_headline_scrape[2].body}
-  #     DOC
-  #     self.espn_headlines
-  #   elsif input == "exit"
-  #     CLI.new.goodbye
-  #   else
-  #     puts "\033[1;33mInvalid Entry -- Please try again\033[0m"
-  #     self.espn_headlines
-  #   end
-  # end
 end

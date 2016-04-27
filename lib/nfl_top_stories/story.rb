@@ -7,12 +7,14 @@ class Story
     doc = Nokogiri::HTML(open(url))
 
     story = self.new
-    story.title = "test title"
-    story.author = "test author"
-    story.posted = "test posted"
-    story.body = "test body"
 
-    # binding.pry
+
+    story.title = doc.search("header.article-header h1").text
+    story.author = doc.search("div.author").text
+    story.posted = doc.search("span.timestamp").text
+    story.body = doc.search("div.article-body p").first.text
+    # Iterate through array of body paragraphs to puts them neatly
+
     puts <<~DOC
     \033[1;35m#{story.title}\033[0m
     \033[0;31mPosted by #{story.author} on #{story.posted}\033[0m
