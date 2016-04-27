@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require "bundler/setup"
+require "nfl_top_stories"
+
+CLI.new.call
