@@ -25,6 +25,7 @@ class Story
     puts <<~DOC
     Read the rest of the story at \033[4;35m#{url}\033[0m
     DOC
+    Headline.espn_choice
   end
 
   def self.nfl_stories
