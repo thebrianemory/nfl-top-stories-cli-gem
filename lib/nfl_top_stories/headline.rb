@@ -31,6 +31,7 @@ class Headline
     end
     input = gets.strip.downcase
     if input == "0"
+      puts ""
       CLI.new.call
     elsif input == "1"
       Story.espn_stories(@headlines[0].url)
@@ -44,6 +45,9 @@ class Headline
     Story.espn_stories(@headlines[4].url)
     elsif input == "6"
     Story.espn_stories(@headlines[5].url)
+    else
+      puts "Invalid entry..."
+      self.espn_choice
     end
   end
 end

@@ -34,7 +34,8 @@ class CLI
     elsif input == "exit"
       goodbye
     else
-      puts "Not sure what you want, type list or exit"
+      puts "Invalid entry..."
+      menu
     end
   end
 

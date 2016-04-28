@@ -6,7 +6,7 @@ class Story
     new_doc = doc.at("aside").remove
     story = self.new
     story.title = doc.search("header.article-header h1").text
-    story.author = doc.search("div.author").text
+    story.author = doc.search("div.author span").text
     story.body = doc.css("div.article-body p")
     new_stories = []
     story.body.each do |x|
