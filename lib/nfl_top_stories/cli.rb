@@ -20,26 +20,26 @@ class CLI
     puts "Enter the number for the site you want to see headlines from.\nYou can also type list to display sites or exit to cancel."
     input = gets.strip.downcase
     if input == "1"
-      Headline.espn_headlines
+      Headline.get_headlines("espn")
     elsif input == "2"
-      Headline.nfl_headlines
+      Headline.get_headlines("nfl")
     elsif input == "3"
-      Headline.cbs_headlines
+      Headline.get_headlines("cbs")
     elsif input == "4"
-      Headline.fox_headlines
+      Headline.get_headlines("fox")
     elsif input == "5"
-      puts "Lists stories from USA Today"
+      Headline.get_headlines("usa")
     elsif input == "list"
       list_stories
     elsif input == "exit"
       goodbye
     else
-      puts "Invalid entry..."
+      puts "\033[0;33mInvalid entry...\033[0m"
       menu
     end
   end
 
   def goodbye
-    puts "See you next time!"
+    puts "\033[0;33mSee you next time!\033[0m"
   end
 end

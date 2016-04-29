@@ -1,13 +1,10 @@
 class Headline
   attr_accessor :title, :url
+  extend HeadlineChoice
 
-## ------------------- ESPN Headlines ------------------- ##
-  def self.espn_headlines
-    @espn_headlines = []
-    self.scrape_espn
-    self.espn_choice
-  end
+  @headlines = []
 
+  ## ------------------- ESPN Headlines ------------------- ##
   def self.scrape_espn
     main_url = "http://espn.go.com"
     doc = Nokogiri::HTML(open("http://espn.go.com/nfl/"))
@@ -17,211 +14,69 @@ class Headline
       espn_headline = self.new
       espn_headline.title = doc.search("div.headlines ul li a")[i].text
       espn_headline.url = main_url +  doc.search("div.headlines ul li a")[i].attributes["href"].value
-      @espn_headlines << espn_headline
+      @headlines << espn_headline
       i += 1
     end
   end
 
-  def self.espn_choice
-    puts ""
-    puts "\033[0;36mWhich story would you like to read?\033[0m"
-    puts "0. Back to the main menu"
-    @espn_headlines.each.with_index(1) do |headline, i|
-      puts "#{i}. #{headline.title}"
-    end
-    input = gets.strip.downcase
-    if input == "0"
-      puts ""
-      CLI.new.call
-    elsif input == "1"
-      Story.espn_stories(@espn_headlines[0].url)
-    elsif input == "2"
-      Story.espn_stories(@espn_headlines[1].url)
-    elsif input == "3"
-      Story.espn_stories(@espn_headlines[2].url)
-    elsif input == "4"
-      Story.espn_stories(@espn_headlines[3].url)
-    elsif input == "5"
-      Story.espn_stories(@espn_headlines[4].url)
-    elsif input == "6"
-      Story.espn_stories(@espn_headlines[5].url)
-    else
-      puts "Invalid entry..."
-      self.espn_choice
-    end
-  end
-
   ## ------------------- NFL.com Headlines ------------------- ##
-  def self.nfl_headlines
-    @nfl_headlines = []
-    self.scrape_nfl
-    self.nfl_choice
-  end
-
   def self.scrape_nfl
     main_url = "http://www.nfl.com"
     doc = Nokogiri::HTML(open("http://www.nfl.com/news"))
 
     i = 0
-    while i < 10
+    while i < 6
       nfl_headline = self.new
       nfl_headline.title = doc.search("div#headlines-latest li a")[i].text
       nfl_headline.url = main_url +  doc.search("div#headlines-latest li a")[i].attributes["href"].value
-      @nfl_headlines << nfl_headline
+      @headlines << nfl_headline
       i += 1
     end
   end
 
-  def self.nfl_choice
-    puts ""
-    puts "\033[0;36mWhich story would you like to read?\033[0m"
-    puts "0. Back to the main menu"
-    @nfl_headlines.each.with_index(1) do |headline, i|
-      puts "#{i}. #{headline.title}"
-    end
-    input = gets.strip.downcase
-    if input == "0"
-      puts ""
-      CLI.new.call
-    elsif input == "1"
-      Story.nfl_stories(@nfl_headlines[0].url)
-    elsif input == "2"
-      Story.nfl_stories(@nfl_headlines[1].url)
-    elsif input == "3"
-      Story.nfl_stories(@nfl_headlines[2].url)
-    elsif input == "4"
-      Story.nfl_stories(@nfl_headlines[3].url)
-    elsif input == "5"
-      Story.nfl_stories(@nfl_headlines[4].url)
-    elsif input == "6"
-      Story.nfl_stories(@nfl_headlines[5].url)
-    elsif input == "7"
-      Story.nfl_stories(@nfl_headlines[6].url)
-    elsif input == "8"
-      Story.nfl_stories(@nfl_headlines[7].url)
-    elsif input == "9"
-      Story.nfl_stories(@nfl_headlines[8].url)
-    elsif input == "10"
-      Story.nfl_stories(@nfl_headlines[9].url)
-    else
-      puts "Invalid entry..."
-      self.nfl_choice
-    end
-  end
-
   ## ------------------- CBS Sports Headlines ------------------- ##
-  def self.cbs_headlines
-    @cbs_headlines = []
-    self.scrape_cbs
-    self.cbs_choice
-  end
-
   def self.scrape_cbs
     main_url = "http://www.cbssports.com"
     doc = Nokogiri::HTML(open("http://www.cbssports.com/nfl"))
 
     i = 0
-    while i < 10
+    while i < 6
       cbs_headline = self.new
       cbs_headline.title = doc.search("ul#homeArenaHeadlines span")[i].text
       cbs_headline.url = doc.search("ul#homeArenaHeadlines a")[i].attributes["href"].value
-      @cbs_headlines << cbs_headline
+      @headlines << cbs_headline
       i += 1
     end
   end
 
-  def self.cbs_choice
-    puts ""
-    puts "\033[0;36mWhich story would you like to read?\033[0m"
-    puts "0. Back to the main menu"
-    @cbs_headlines.each.with_index(1) do |headline, i|
-      puts "#{i}. #{headline.title}"
-    end
-    input = gets.strip.downcase
-    if input == "0"
-      puts ""
-      CLI.new.call
-    elsif input == "1"
-      Story.cbs_stories(@cbs_headlines[0].url)
-    elsif input == "2"
-      Story.cbs_stories(@cbs_headlines[1].url)
-    elsif input == "3"
-      Story.cbs_stories(@cbs_headlines[2].url)
-    elsif input == "4"
-      Story.cbs_stories(@cbs_headlines[3].url)
-    elsif input == "5"
-      Story.cbs_stories(@cbs_headlines[4].url)
-    elsif input == "6"
-      Story.cbs_stories(@cbs_headlines[5].url)
-    elsif input == "7"
-      Story.cbs_stories(@cbs_headlines[6].url)
-    elsif input == "8"
-      Story.cbs_stories(@cbs_headlines[7].url)
-    elsif input == "9"
-      Story.cbs_stories(@cbs_headlines[8].url)
-    elsif input == "10"
-      Story.cbs_stories(@cbs_headlines[9].url)
-    else
-      puts "Invalid entry..."
-      self.cbs_choice
-    end
-  end
-
   ## ------------------- Fox Sports Headlines ------------------- ##
-  def self.fox_headlines
-    @fox_headlines = []
-    self.scrape_fox
-    self.fox_choice
-  end
-
   def self.scrape_fox
     main_url = "http://www.foxsports.com"
     doc = Nokogiri::HTML(open("http://www.foxsports.com/nfl"))
 
     i = 0
-    while i < 10
+    while i < 6
       fox_headline = self.new
-      fox_headline.title = "TITLE"
-      fox_headline.url = main_url
-      @fox_headlines << fox_headline
+      fox_headline.title = doc.search("h3.buzzer-title")[i].text
+      fox_headline.url = doc.search("div.buzzer-header a")[i].attributes["href"].value
+      @headlines << fox_headline
       i += 1
     end
   end
 
-  def self.fox_choice
-    puts ""
-    puts "\033[0;36mWhich story would you like to read?\033[0m"
-    puts "0. Back to the main menu"
-    @fox_headlines.each.with_index(1) do |headline, i|
-      puts "#{i}. #{headline.title}"
-    end
-    input = gets.strip.downcase
-    if input == "0"
-      puts ""
-      CLI.new.call
-    elsif input == "1"
-      Story.fox_stories(@fox_headlines[0].url)
-    elsif input == "2"
-      Story.fox_stories(@fox_headlines[1].url)
-    elsif input == "3"
-      Story.fox_stories(@fox_headlines[2].url)
-    elsif input == "4"
-      Story.fox_stories(@fox_headlines[3].url)
-    elsif input == "5"
-      Story.fox_stories(@fox_headlines[4].url)
-    elsif input == "6"
-      Story.fox_stories(@fox_headlines[5].url)
-    elsif input == "7"
-      Story.fox_stories(@fox_headlines[6].url)
-    elsif input == "8"
-      Story.fox_stories(@fox_headlines[7].url)
-    elsif input == "9"
-      Story.fox_stories(@fox_headlines[8].url)
-    elsif input == "10"
-      Story.fox_stories(@fox_headlines[9].url)
-    else
-      puts "Invalid entry..."
-      self.fox_choice
+  ## ------------------- USA Today Headlines ------------------- ##
+  def self.scrape_usa
+    main_url = "http://www.usatoday.com"
+    doc = Nokogiri::HTML(open("http://www.usatoday.com/sports/nfl"))
+
+    i = 0
+    while i < 6
+      usa_headline = self.new
+      usa_headline.title = doc.search("li span.js-asset-headline")[i].text
+      usa_headline.url = main_url + doc.search("li a.js-asset-link")[i].attributes["href"].value
+      @headlines << usa_headline
+      i += 1
     end
   end
+
 end

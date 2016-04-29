@@ -1,7 +1,7 @@
 require 'pry'
 require 'Nokogiri'
 require 'open-uri'
-
+require_relative './nfl_top_stories/concerns/headline_choice'
 require_relative './nfl_top_stories/version'
 require_relative './nfl_top_stories/story'
 require_relative './nfl_top_stories/headline'
