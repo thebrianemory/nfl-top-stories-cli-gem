@@ -38,13 +38,13 @@ class Headline
     elsif input == "2"
       Story.espn_stories(@espn_headlines[1].url)
     elsif input == "3"
-    Story.espn_stories(@espn_headlines[2].url)
+      Story.espn_stories(@espn_headlines[2].url)
     elsif input == "4"
-    Story.espn_stories(@espn_headlines[3].url)
+      Story.espn_stories(@espn_headlines[3].url)
     elsif input == "5"
-    Story.espn_stories(@espn_headlines[4].url)
+      Story.espn_stories(@espn_headlines[4].url)
     elsif input == "6"
-    Story.espn_stories(@espn_headlines[5].url)
+      Story.espn_stories(@espn_headlines[5].url)
     else
       puts "Invalid entry..."
       self.espn_choice
@@ -164,6 +164,64 @@ class Headline
     else
       puts "Invalid entry..."
       self.cbs_choice
+    end
+  end
+
+  ## ------------------- Fox Sports Headlines ------------------- ##
+  def self.fox_headlines
+    @fox_headlines = []
+    self.scrape_fox
+    self.fox_choice
+  end
+
+  def self.scrape_fox
+    main_url = "http://www.foxsports.com"
+    doc = Nokogiri::HTML(open("http://www.foxsports.com/nfl"))
+
+    i = 0
+    while i < 10
+      fox_headline = self.new
+      fox_headline.title = "TITLE"
+      fox_headline.url = main_url
+      @fox_headlines << fox_headline
+      i += 1
+    end
+  end
+
+  def self.fox_choice
+    puts ""
+    puts "\033[0;36mWhich story would you like to read?\033[0m"
+    puts "0. Back to the main menu"
+    @fox_headlines.each.with_index(1) do |headline, i|
+      puts "#{i}. #{headline.title}"
+    end
+    input = gets.strip.downcase
+    if input == "0"
+      puts ""
+      CLI.new.call
+    elsif input == "1"
+      Story.fox_stories(@fox_headlines[0].url)
+    elsif input == "2"
+      Story.fox_stories(@fox_headlines[1].url)
+    elsif input == "3"
+      Story.fox_stories(@fox_headlines[2].url)
+    elsif input == "4"
+      Story.fox_stories(@fox_headlines[3].url)
+    elsif input == "5"
+      Story.fox_stories(@fox_headlines[4].url)
+    elsif input == "6"
+      Story.fox_stories(@fox_headlines[5].url)
+    elsif input == "7"
+      Story.fox_stories(@fox_headlines[6].url)
+    elsif input == "8"
+      Story.fox_stories(@fox_headlines[7].url)
+    elsif input == "9"
+      Story.fox_stories(@fox_headlines[8].url)
+    elsif input == "10"
+      Story.fox_stories(@fox_headlines[9].url)
+    else
+      puts "Invalid entry..."
+      self.fox_choice
     end
   end
 end

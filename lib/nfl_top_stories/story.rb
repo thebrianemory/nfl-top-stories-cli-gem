@@ -13,6 +13,8 @@ class Story
         Headline.nfl_choice
       when "cbs"
         Headline.cbs_choice
+      when "fox"
+        Headline.fox_choice
       end
     else
       CLI.new.goodbye
@@ -80,5 +82,19 @@ class Story
       @new_stories << x.text unless x.text == ""
     end
     self.display_story("cbs")
+  end
+
+  def self.fox_stories(url)
+    doc = Nokogiri::HTML(open(url))
+    @url = url
+    @story = self.new
+    @story.title = "TITLE"
+    @story.author = "by " + "AUTHOR"
+    # @story.body = doc.search("div.storyCopy p")
+    @new_stories = ["body", "GIRAFFE", "pizza"]
+    # @story.body.each do |x|
+    #   @new_stories << x.text unless x.text == ""
+    # end
+    self.display_story("fox")
   end
 end

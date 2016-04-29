@@ -26,7 +26,7 @@ class CLI
     elsif input == "3"
       Headline.cbs_headlines
     elsif input == "4"
-      puts "Lists stories from Fox Sports"
+      Headline.fox_headlines
     elsif input == "5"
       puts "Lists stories from USA Today"
     elsif input == "list"
