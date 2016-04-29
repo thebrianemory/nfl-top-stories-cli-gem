@@ -1,8 +1,6 @@
 # NFL Top Stories
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/nfl_top_stories`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+NFL Top Stories will pull headlines and stories from ESPN, NFL.com, CBS Sports, Fox Sports, and USA Today. Upon choosing your media outlet, you will get a list of their top NFL stories pulled from the NFL news portion of their website and display them. You can choose your story which will show its title, author, and a five paragraph preview of the story with the URL for the full story.
 
 ## Installation
 
@@ -22,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Run bin/nfl-top-stories and follow the prompts to get your news.
 
 ## Development
 
