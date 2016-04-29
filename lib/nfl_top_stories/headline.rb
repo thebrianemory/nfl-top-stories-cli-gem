@@ -108,4 +108,62 @@ class Headline
       self.nfl_choice
     end
   end
+
+  ## ------------------- CBS Sports Headlines ------------------- ##
+  def self.cbs_headlines
+    @cbs_headlines = []
+    self.scrape_cbs
+    self.cbs_choice
+  end
+
+  def self.scrape_cbs
+    main_url = "http://www.cbssports.com"
+    doc = Nokogiri::HTML(open("http://www.cbssports.com/nfl"))
+
+    i = 0
+    while i < 10
+      cbs_headline = self.new
+      cbs_headline.title = doc.search("ul#homeArenaHeadlines span")[i].text
+      cbs_headline.url = doc.search("ul#homeArenaHeadlines a")[i].attributes["href"].value
+      @cbs_headlines << cbs_headline
+      i += 1
+    end
+  end
+
+  def self.cbs_choice
+    puts ""
+    puts "\033[0;36mWhich story would you like to read?\033[0m"
+    puts "0. Back to the main menu"
+    @cbs_headlines.each.with_index(1) do |headline, i|
+      puts "#{i}. #{headline.title}"
+    end
+    input = gets.strip.downcase
+    if input == "0"
+      puts ""
+      CLI.new.call
+    elsif input == "1"
+      Story.cbs_stories(@cbs_headlines[0].url)
+    elsif input == "2"
+      Story.cbs_stories(@cbs_headlines[1].url)
+    elsif input == "3"
+      Story.cbs_stories(@cbs_headlines[2].url)
+    elsif input == "4"
+      Story.cbs_stories(@cbs_headlines[3].url)
+    elsif input == "5"
+      Story.cbs_stories(@cbs_headlines[4].url)
+    elsif input == "6"
+      Story.cbs_stories(@cbs_headlines[5].url)
+    elsif input == "7"
+      Story.cbs_stories(@cbs_headlines[6].url)
+    elsif input == "8"
+      Story.cbs_stories(@cbs_headlines[7].url)
+    elsif input == "9"
+      Story.cbs_stories(@cbs_headlines[8].url)
+    elsif input == "10"
+      Story.cbs_stories(@cbs_headlines[9].url)
+    else
+      puts "Invalid entry..."
+      self.cbs_choice
+    end
+  end
 end
