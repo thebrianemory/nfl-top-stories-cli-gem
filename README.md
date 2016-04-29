@@ -22,7 +22,7 @@ Or install it yourself as:
 
 From the directory execute:
 
-    $ .bin/nfl-top-stories
+    $ ./bin/nfl-top-stories
 
 and follow the prompts to get your news.
 
