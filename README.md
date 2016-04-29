@@ -20,10 +20,11 @@ Or install it yourself as:
 
 ## Usage
 
-Run
-  $ .bin/nfl-top-stories
+From the directory execute:
 
-  from the directory and follow the prompts to get your news.
+    $ .bin/nfl-top-stories
+
+and follow the prompts to get your news.
 
 ## Development
 
