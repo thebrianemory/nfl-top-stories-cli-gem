@@ -1,8 +1,11 @@
 class CLI
 
   def call
+    puts ""
+    puts "Welcome to NFL Top Stories!"
+    puts "View the top headlines from the following sites:"
+    puts ""
     list_stories
-
   end
 
   def list_stories
