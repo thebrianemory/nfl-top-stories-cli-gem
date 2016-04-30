@@ -114,12 +114,12 @@ class Story
     @url = url
     @story = self.new
     @story.title = doc.search("h1.asset-headline").text
-    @story.author = "By " + "AUTHOR"
-    # @story.body = doc.search("div.storyCopy p")
-    @new_stories = ["body", "GIRAFFE", "pizza"]
-    # @story.body.each do |x|
-    #   @new_stories << x.text unless x.text == ""
-    # end
+    @story.author = "By " + doc.search("span.asset-metabar-author").text.strip
+    @story.body = doc.search("div.asset-double-wide p")
+    @new_stories = []
+    @story.body.each do |x|
+      @new_stories << x.text unless x.text == ""
+    end
     self.display_story("usa")
   end
 end
