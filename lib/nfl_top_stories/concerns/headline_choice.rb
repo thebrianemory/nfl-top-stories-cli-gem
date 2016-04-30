@@ -22,7 +22,6 @@ module HeadlineChoice
   end
 
   def get_choice(source)
-    puts ""
     puts "\033[0;36mWhich story would you like to read?\033[0m"
     puts "0. Back to the main menu"
     @headlines.each.with_index(1) do |headline, i|
@@ -59,6 +58,7 @@ module HeadlineChoice
     elsif input == "6"
       Story.send(get_source, @headlines[5].url)
     else
+      puts ""
       puts "\033[0;33mInvalid entry...\033[0m"
       get_choice(source)
     end

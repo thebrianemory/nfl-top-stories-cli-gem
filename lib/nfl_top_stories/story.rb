@@ -5,6 +5,7 @@ class Story
     puts ""
     puts "Would you like to read more stories?"
     input = gets.strip.downcase
+    puts ""
     if input == "yes" || input == "y"
       case source.to_s
       when "espn"
