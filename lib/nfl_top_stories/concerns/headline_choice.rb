@@ -1,25 +1,21 @@
 module HeadlineChoice
 
   def get_headlines(source)
+    @headlines = []
     case source.to_s
     when "espn"
-      @headlines = []
       self.scrape_espn
       get_choice("espn")
     when "nfl"
-      @headlines = []
       self.scrape_nfl
       get_choice("nfl")
     when "cbs"
-      @headlines = []
       self.scrape_cbs
       get_choice("cbs")
     when "fox"
-      @headlines = []
       self.scrape_fox
       get_choice("fox")
     when "usa"
-      @headlines = []
       self.scrape_usa
       get_choice("usa")
     end
