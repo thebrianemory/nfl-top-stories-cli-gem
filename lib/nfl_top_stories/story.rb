@@ -94,7 +94,7 @@ class Story
     doc = Nokogiri::HTML(open(url))
     @url = url
     @story = self.new
-    @story.title = doc.search("h2.story-sub-headline").text
+    @story.title = doc.search("h1.story-headline").text
     @story.author = doc.search("span.byline-name").text
     @story.body = doc.search("div.story-body p")
     @new_stories = []
@@ -111,6 +111,13 @@ class Story
   ## ------------------- USA Today Stories ------------------- ##
   def self.usa_stories(url)
     doc = Nokogiri::HTML(open(url))
+    doc.search("video").remove
+    doc.search("aside").remove
+    doc.search("p.video-desc").remove
+    doc.search("p.pluto-share-overlay-title").remove
+    doc.search("p.pluto-embed-overlay-title").remove
+    doc.search("p.oembed-link-title").remove
+    doc.search("p.oembed-link-desc").remove
     @url = url
     @story = self.new
     @story.title = doc.search("h1.asset-headline").text
@@ -118,7 +125,11 @@ class Story
     @story.body = doc.search("div.asset-double-wide p")
     @new_stories = []
     @story.body.each do |x|
-      @new_stories << x.text unless x.text == ""
+      if x.content.strip.empty?
+        x.remove
+      else
+        @new_stories << x.text
+      end
     end
     self.display_story("usa")
   end
