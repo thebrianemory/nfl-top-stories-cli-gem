@@ -7,7 +7,7 @@ NFL Top Stories will pull headlines and stories from ESPN, NFL.com, CBS Sports, 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'nfl_top_stories'
+gem 'nfl-top-stories'
 ```
 
 And then execute:
@@ -16,11 +16,11 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install nfl_top_stories
+    $ gem install nfl-top-stories
 
 ## Usage
 
-From the directory execute:
+From the local directory execute:
 
     $ ./bin/nfl-top-stories
 

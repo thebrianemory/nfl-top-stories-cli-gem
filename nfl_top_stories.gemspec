@@ -4,23 +4,16 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'nfl_top_stories/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "nfl_top_stories"
+  spec.name          = "nfl-top-stories"
   spec.version       = NflTopStories::VERSION
   spec.authors       = ["thebrianemory"]
   spec.email         = ["the@brianemory.com"]
 
-  spec.summary       = %q{TODO: Write a short summary, because Rubygems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary       = %q{NFL Top Stories}
+  spec.description   = %q{NFL Top Stories will pull NFL headlines and stories from ESPN, NFL.com, CBS Sports, Fox Sports, and USA Today.}
+  spec.homepage      = "https://github.com/thebrianemory/nfl-top-stories-cli-gem"
   spec.license       = "MIT"
 
-  # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
-  # delete this section to allow pushing this gem to any host.
-  if spec.respond_to?(:metadata)
-    spec.metadata['allowed_push_host'] = "TODO: Set to 'http://mygemserver.com'"
-  else
-    raise "RubyGems 2.0 or newer is required to protect against public gem pushes."
-  end
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   spec.bindir        = "exe"
